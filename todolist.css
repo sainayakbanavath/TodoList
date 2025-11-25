@@ -1,0 +1,73 @@
+:root{
+  --accent-1:#6c5ce7; --accent-2:#00b894; --bg-1:#081028; --card-bg: rgba(255,255,255,0.04); --glass-border: rgba(255,255,255,0.06);
+  --text:#e6eef8; --muted:#9fb3d6;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;min-height:100vh;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial; background: linear-gradient(180deg,var(--bg-1) 0%, #0e3a66 60%, #0f7a5b 100%); color:var(--text);}
+
+.scene{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:36px}
+
+.todos-card{width:100%;max-width:920px;border-radius:16px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));box-shadow:0 12px 40px rgba(2,6,23,0.46);padding:22px;position:relative;overflow:hidden;border:1px solid rgba(255,255,255,0.03)}
+
+.header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{width:46px;height:46px;border-radius:10px;display:inline-grid;place-items:center;background:linear-gradient(90deg,var(--accent-1),#9f7aea);color:white;font-weight:700}
+.brand h1{margin:0;font-size:20px;letter-spacing:0.4px}
+.brand p{margin:0;color:var(--muted);font-size:13px}
+
+/* Refined search (fixed layout) */
+.input-wrap{display:flex;gap:12px;align-items:center;margin:18px 0}
+.floating{position:relative;flex:1;display:flex;align-items:center;padding:12px;border-radius:14px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));border:1px solid var(--glass-border);backdrop-filter: blur(6px);}
+
+.search-icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);width:46px;height:46px;border-radius:10px;display:inline-grid;place-items:center;background:transparent;flex-shrink:0}
+.search-icon svg{width:20px;height:20px;filter:drop-shadow(0 6px 10px rgba(108,92,231,0.06));}
+
+/* input gets padding-left to avoid icon and padding-right for clear button */
+.todo-input{flex:1;padding:12px 18px 12px 78px;border-radius:10px;border: none;background:transparent;color:var(--text);font-size:16px;outline:none}
+
+/* clear button positioned on the right */
+.clear-btn{position:absolute;right:12px;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:8px;border:none;background:transparent;display:inline-grid;place-items:center;cursor:pointer;color:var(--muted);font-size:16px}
+.clear-btn:hover{color:var(--text);background:rgba(255,255,255,0.02)}
+
+/* floating label */
+.label-text{position:absolute;left:78px;top:50%;transform:translateY(-50%);font-size:14px;color:rgba(214,226,255,0.46);pointer-events:none;transition:all .18s ease}
+.floating.focused .label-text, .floating.has-value .label-text{transform:translateY(-140%) scale(.86);font-size:12px;color:var(--accent-2)}
+
+.placeholder-layer{position:absolute;left:78px;top:50%;transform:translateY(-50%);font-size:14px;color:rgba(214,226,255,0.12);pointer-events:none;transition:opacity .18s, transform .18s}
+.floating.has-value .placeholder-layer, .floating.focused .placeholder-layer{opacity:0;transform:translateY(-6px)}
+
+/* search button: make it normal (less flashy) */
+.btn-primary{background:transparent;border:1px solid var(--glass-border);color:var(--text);padding:10px 14px;border-radius:10px;cursor:pointer;font-weight:700;font-size:14px}
+.btn-primary:hover{background:rgba(255,255,255,0.02)}
+
+.todo-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;max-height:48vh;overflow:auto}
+
+.todo-item{display:flex;align-items:center;gap:12px;padding:12px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));border:1px solid rgba(255,255,255,0.02);transition:transform .22s ease, box-shadow .22s ease}
+.todo-item:hover{transform:translateY(-4px);box-shadow:0 10px 30px rgba(2,6,23,0.25)}
+
+.checkbox{width:20px;height:20px;border-radius:6px;border:2px solid rgba(255,255,255,0.06);display:inline-flex;align-items:center;justify-content:center;cursor:pointer;background:transparent;color:var(--muted)}
+.checkbox.checked{background:linear-gradient(90deg,var(--accent-1),#a78bfa);border:none;color:white;position:relative}
+.checkbox.checked::after{content:"✓";position:absolute;left:50%;top:50%;transform:translate(-50%,-52%);font-size:14px;color:white;font-weight:700;}
+
+.todo-text{flex:1;font-size:15px;color:var(--text);transition:color .25s ease, transform .25s ease}
+/* completed style: overline + animation */
+.todo-text.completed{color:var(--muted);text-decoration:line-through;text-decoration-thickness:2px;animation:completeGlow .9s ease forwards}
+@keyframes completeGlow{0%{transform:translateX(0) scale(1);filter:drop-shadow(0 0 0 rgba(0,0,0,0));}30%{transform:translateX(-6px) scale(1.03);filter:drop-shadow(0 6px 18px rgba(108,92,231,0.06));}60%{transform:translateX(6px) scale(0.995);}100%{transform:translateX(0) scale(1);}}
+
+.actions{display:flex;gap:8px;align-items:center}
+
+/* small confetti pieces when completing */
+.confetti-piece{position:absolute;width:8px;height:6px;border-radius:2px;pointer-events:none;opacity:0.95}
+
+.signature{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);font-size:16px;color:#fff;font-weight:700;padding:8px 14px;border-radius:10px;background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.04);}
+
+@media (max-width:600px){ .label-text{left:66px} .placeholder-layer{left:66px} .todo-input{padding-left:72px} }
+
+/* Dynamic small buttons */
+.dynamic-btn{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:10px;border:none;background:linear-gradient(90deg,rgba(108,92,231,0.06),rgba(0,184,148,0.03));color:var(--text);cursor:pointer;transition:transform .18s,box-shadow .18s,background .2s;position:relative;overflow:hidden}
+.dynamic-btn svg{width:16px;height:16px;opacity:.95}
+.dynamic-btn span.label{font-weight:700}
+.dynamic-btn:hover{transform:translateY(-4px);box-shadow:0 10px 26px rgba(2,6,23,0.18);background:linear-gradient(90deg,var(--accent-1),var(--accent-2));color:white}
+.dynamic-btn:active{transform:translateY(-2px) scale(.99)}
+.dynamic-btn .ripple{position:absolute;border-radius:50%;transform:scale(0);background:rgba(255,255,255,0.28);opacity:0.9}

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Eye-Feast Todos — Refined</title>
+    <link rel="stylesheet" href="todolist.css" />
+  </head>
+  <body>
+    <div class="scene">
+      <div class="todos-card">
+        <div class="header">
+          <div class="brand">
+            <div class="logo">TL</div>
+            <div>
+              <h1>Todos List</h1>
+              <p>Simple. Refined. Focused.</p>
+            </div>
+          </div>
+          <div class="controls"></div>
+        </div>
+
+        <div class="input-wrap">
+          <label class="floating" id="floatingWrap">
+            <span class="search-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z" stroke="white" stroke-opacity="0.9" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 21L16.65 16.65" stroke="white" stroke-opacity="0.9" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+
+            <input id="todoUserInput" class="todo-input" placeholder="" aria-label="New todo">
+
+            <button type="button" id="clearBtn" class="clear-btn" title="Clear">✖</button>
+
+            <span class="label-text"></span>
+            <span class="placeholder-layer"></span>
+          </label>
+
+          <button id="addTodoButton" class="btn-primary">Add</button>
+        </div>
+
+        <ul id="todoItemsContainer" class="todo-list" aria-live="polite" aria-relevant="additions removals"></ul>
+
+        <div class="footer" style="display:flex;justify-content:space-between;align-items:center;padding-top:12px;border-top:1px dashed rgba(255,255,255,0.03);margin-top:12px">
+          <div><span id="itemsLeft">0</span> items left</div>
+          <div style="display:flex;gap:8px;align-items:center">
+            <button id="clearCompleted" class="dynamic-btn" title="Clear completed" aria-label="Clear completed">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M3 6h18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 6v-1a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span class="label">Clear completed</span>
+            </button>
+            <button id="saveTodoButton" class="dynamic-btn" title="Save" aria-label="Save">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M19 21H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h3l2-2h4l2 2h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 11v6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 8h6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span class="label">Save</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="signature">MADE BY SAI NAYAK</div>
+    </div>
+
+    <script src="todolist.js" defer></script>
+  </body>
+</html>
